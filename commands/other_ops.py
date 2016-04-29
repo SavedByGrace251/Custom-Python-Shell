@@ -5,7 +5,3 @@ def exit(commandTokens):
 
 def quit(commandTokens):
 	return 1
-
-def clear(commandTokens):
-	cls()
-	return 0

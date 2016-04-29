@@ -14,6 +14,7 @@ import os, subprocess, pip, string, sys, types, re, inspect, io
 import commands
 
 COMMAND_LIST = inspect.getmembers(commands, inspect.isfunction)
+print(COMMAND_LIST)
 
 def executeCommand(commandTokens):
 	returnCode = -1
@@ -55,7 +56,7 @@ def checkForRedirect(commandTokens):
 
 def parseCommand(commandString):
 	# split command into tokens
-	commandTokens = re.findall('(?<=")[^"\\\\]*(?:\\\\.[^"\\\\]*)*(?=")|(?<=\')[^\'\\\\]*(?:\\\\.[^\'\\\\]*)*(?=\')|[^\s]+',commandString)
+	commandTokens = re.findall('(?<=")[^"\\\\]*(?:\\\\.[^"\\\\]*)*(?=")|(?<=\')[^\'\\\\]*(?:\\\\.[^\'\\\\]*)*(?=\')|[!#-&(-~]+',commandString)
 	# tokenization produces blank tokens in certain cases
 	# clean blank tokens
 	for i in range(len(commandTokens)):
@@ -66,7 +67,7 @@ def parseCommand(commandString):
 		except IndexError:
 			break
 
-	print(commandTokens)
+	#print(commandTokens)
 	return checkForRedirect(commandTokens)
 
 def main():

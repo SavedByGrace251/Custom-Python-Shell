@@ -1,4 +1,4 @@
-import os, string, sys, glob, re
+import os, string, sys, shutil, glob, re
 
 def cat(commandTokens):
 	try:
@@ -25,7 +25,36 @@ def grep(commandTokens):
 	return 0
 
 def cp(commandTokens):
+	try:
+		file = commandTokens[1]
+		dest = commandTokens[2]
+
+		if os.path.isfile(file):
+			shutil.copy(file, dest)
+		else:
+			print('The file "' + commandTokens[1] + '" cannot be found.')
+	except IndexError:
+		print("ERROR: You must provide both a source file and destination location")
 	return 0
 
 def mv(commandTokens):
+	try:
+		file = commandTokens[1]
+		dest = commandTokens[2]
+
+		if os.path.isfile(file):
+			shutil.move(file, dest)
+		else:
+			print('The file "' + commandTokens[1] + '" cannot be found.')
+	except IndexError:
+		print("ERROR: You must provide both a source file and destination location")
+	return 0
+
+def touch(commandTokens):
+	try:
+		file = commandTokens[1]
+		outFile = open(file, 'w')
+		outFile.write('')
+	except IndexError:
+		print("ERROR: You must provide a file name")
 	return 0

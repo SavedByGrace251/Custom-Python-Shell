@@ -1,4 +1,4 @@
-import os, string, sys, getpass, shutil
+import os, string, sys, shutil
 
 def ls(commandTokens):
 	fileList = []
@@ -16,7 +16,7 @@ def cd(commandTokens):
 	try:
 		os.chdir(commandTokens[1])
 	except IndexError:
-		os.chdir("C:/Users/"+getpass.getuser())
+		os.chdir(os.path.expanduser('~'))
 	except OSError:
 		print('The directory "' + commandTokens[1] + '" does not exist.')
 	return 0
