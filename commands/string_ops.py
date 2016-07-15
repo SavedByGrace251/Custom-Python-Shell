@@ -14,3 +14,26 @@ def echo(commandTokens):
 				break
 			i += 1
 	return 0
+
+def textToAscii(commandTokens):
+	output = ""
+	try:
+		for t in commandTokens[1]:
+			output += str(ord(t))
+			output += " "
+	except IndexError:
+		print(output)
+	else:
+		i = 2
+		while(True):
+			try:
+				output += "32 "
+				for t in commandTokens[i]:
+					output += str(ord(t))
+					output += " "
+			except IndexError:
+				output = output[:-4]
+				print(output)
+				break
+			i += 1
+	return 0

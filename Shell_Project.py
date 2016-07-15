@@ -74,7 +74,10 @@ def main():
 	EXIT_CODE = 0
 	print("Shell Interpreter Terminal: v" + SHELL_VERSION + "\n")
 	while(True):
-		command = input(os.getcwd() + " >> ") # get command from user
+		if (sys.version_info >= (3,0)):
+			command = input(os.getcwd() + " >> ") # get command from user
+		else:
+			command = raw_input(os.getcwd() + " >> ") # get command from user
 		if (command.lstrip() == ""): # if blank command, just continue
 			continue
 		command, isFile, redirect = parseCommand(command) # parse the command input
