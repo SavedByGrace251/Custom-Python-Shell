@@ -14,6 +14,7 @@ import os, subprocess, pip, string, sys, types, re, inspect, io
 import commands
 
 COMMAND_LIST = inspect.getmembers(commands, inspect.isfunction)
+os.system('clear')
 print(COMMAND_LIST)
 
 def executeCommand(commandTokens):
